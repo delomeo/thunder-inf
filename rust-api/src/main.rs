@@ -53,9 +53,8 @@ while let Some(field) = match multipart.next_field().await {
 #[tokio::main]
 async fn main() {
     let app = Router::new()
-        .route("/infer", get(infer));
-    
+        //.route("/", get(home))
+        .route("/upload", post(upload_chunk));
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
-
     axum::serve(listener, app).await.unwrap();
 }
